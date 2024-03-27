@@ -363,6 +363,57 @@ public class DBGui extends JFrame{
             }
 
         });
+        update_Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                result_textarea.append("INSERTION QUERY: inserimento di un nuovo prodotto nella tabella 'prodotto'\n"+
+                        "\n\nRISULTATO PRIMA DELLA ESECUZIONE DELL'UPDATE:\n-----------------------------------------------------------------------------+\n");
+                result_textarea.append(" codice\t| nome\t\t| prezzo\t| reparto\t| brand\t          |\n");
+                result_textarea.append("-----------------------------------------------------------------------------|\n");
+                String codice = null;
+                String nome = null;
+                float prezzo=0;
+                String reparto = null;
+                String brand = null;
+                String url = "jdbc:mysql://localhost:3306/progetto_fumetteria?user=root&password=m51098guerrera";
+                try {
+                    String sqlQuery="select * from prodotto;";
+                    Connection con = DriverManager.getConnection(url);
+                    Statement st= con.createStatement();
+                    ResultSet rs= st.executeQuery(sqlQuery);
+                    while(rs.next()) {
+                        codice = rs.getString("codice");
+                        nome = rs.getString("nome");
+                        brand = rs.getString("brand");
+                        prezzo = rs.getFloat("prezzo");
+                        reparto = rs.getString("reparto");
+                        result_textarea.append("  " + codice + "\t| " + nome + "\t| " + prezzo + "\t| " + reparto + "\t| " + brand + "   |\n");
+                        System.out.println("  " + codice + "\t| " + nome + "\t| " + prezzo + "\t| " + reparto + "\t| " + brand + "   |\n");
+                        result_textarea.append("-----------------------------------------------------------------------------+\n");
+                    }
+                    String sqlQuery2="UPDATE prodotto set nome ='Minato Namikaze' where codice=171";
+                    Statement st2= con.createStatement();
+                    System.out.print(st2.executeUpdate(sqlQuery2));
+                    result_textarea.append("\nUPDATE QUERY: inserimento di un nuovo prodotto nella tabella 'prodotto'\n"+
+                            "\nRISULTATO DOPO L'ESECUZIONE DELL'UPDATE:\n-----------------------------------------------------------------------------+\n");
+                    result_textarea.append(" codice\t| nome\t\t| prezzo\t| reparto\t| brand\t          |\n");
+                    result_textarea.append("-----------------------------------------------------------------------------|\n");
+                    ResultSet rs2=st.executeQuery(sqlQuery);
+
+                    while(rs2.next()){
+                        codice = rs2.getString("codice");
+                        nome = rs2.getString("nome");
+                        brand = rs2.getString("brand");
+                        prezzo = rs2.getFloat("prezzo");
+                        reparto = rs2.getString("reparto");
+                        result_textarea.append("  "+codice+"\t| "+nome+"\t| "+prezzo+"\t| "+reparto+"\t| "+brand+"   |\n");
+                        result_textarea.append("-----------------------------------------------------------------------------+\n");
+                    }
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     private void connettiDB(String DBName) throws SQLException {
