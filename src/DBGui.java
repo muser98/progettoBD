@@ -28,7 +28,7 @@ public class DBGui extends JFrame{
         this.conn= new JLabel();
         this.clear_area_btn = new JButton();
         this.connection_btn= new JButton();
-        this.db_insertion = new JTextField(30);
+        this.db_insertion = new JTextField(45);
         this.result_textarea= new JTextArea(40,80);
 
         connection_btn.setText("Connetti al Database");
@@ -78,28 +78,29 @@ public class DBGui extends JFrame{
         select_btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                result_textarea.append("QUERY 2: selezione su due o piu tabelle con condizioni\n" +
-                        "trova gli impiegati DIRETTORI che guadagnano un incentivo SUPERIORE ai 20 euro\n\nRISULTATO QUERY:\n----------------------------------------------------------+\n");
-                result_textarea.append(" nome\t| cognome\t| incentivo  |\n");
-                result_textarea.append("-----------------------------------------------------------|\n");
-
+                String codice = null;
                 String nome = null;
-                int incentivo=0;
-                String cognome = null;
+                float prezzo=0;
+                String reparto = null;
+                String brand = null;
                 String url = "jdbc:mysql://localhost:3306/progetto_fumetteria?user=root&password=m51098guerrera";
+                result_textarea.append(" codice\t| nome\t\t| prezzo\t| reparto\t| brand\t          |\n");
+                result_textarea.append("-------------------------------------------------------------------------------------------------------------------------------------------+\n");
                 try {
-                    String sqlQuery="select c.nome,c.cognome,r.incentivo\n" +
-                                    "from reparto r,commesso c " +
-                                    "where r.commesso=c.cf and r.incentivo>20;";
+                    String sqlQuery="select * from prodotto"+
+                                    " where prezzo > 20;";
                     Connection con = DriverManager.getConnection(url);
                     Statement st= con.createStatement();
                     ResultSet rs= st.executeQuery(sqlQuery);
-                    while(rs.next()){
+                    while(rs.next()) {
+                        codice = rs.getString("codice");
                         nome = rs.getString("nome");
-                        cognome = rs.getString("cognome");
-                        incentivo = rs.getInt("incentivo");
-                        result_textarea.append("  "+nome+"\t| "+cognome+"\t| "+incentivo+"             |\n");
-                        result_textarea.append("----------------------------------------------------------+\n");
+                        brand = rs.getString("brand");
+                        prezzo = rs.getFloat("prezzo");
+                        reparto = rs.getString("reparto");
+                        result_textarea.append("  " + codice + "\t| " + nome + "\t| " + prezzo + "\t| " + reparto + "\t| " + brand + "   |\n");
+                        System.out.println("  " + codice + "\t| " + nome + "\t| " + prezzo + "\t| " + reparto + "\t| " + brand + "   |\n");
+                        result_textarea.append("-------------------------------------------------------------------------------------------------------------------------------------------+\n");
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
@@ -240,13 +241,13 @@ public class DBGui extends JFrame{
                         System.out.println("  " + codice + "\t| " + nome + "\t| " + prezzo + "\t| " + reparto + "\t| " + brand + "   |\n");
                         result_textarea.append("-----------------------------------------------------------------------------+\n");
                     }
-                    String sqlQuery2="UPDATE prodotto set nome ='Minato Namikaze' where codice=171";
+                    String sqlQuery2="UPDATE prodotto set nome ='LugiaEX - 4 pack' where codice=444";
                     Statement st2= con.createStatement();
                     System.out.print(st2.executeUpdate(sqlQuery2));
                     result_textarea.append("\nUPDATE QUERY: inserimento di un nuovo prodotto nella tabella 'prodotto'\n"+
-                            "\nRISULTATO DOPO L'ESECUZIONE DELL'UPDATE:\n-----------------------------------------------------------------------------+\n");
+                            "\nRISULTATO DOPO L'ESECUZIONE DELL'UPDATE:\n-------------------------------------------------------------------------------------------------------------------------------------------+\n");
                     result_textarea.append(" codice\t| nome\t\t| prezzo\t| reparto\t| brand\t          |\n");
-                    result_textarea.append("-----------------------------------------------------------------------------|\n");
+                    result_textarea.append("-------------------------------------------------------------------------------------------------------------------------------------------+\n");
                     ResultSet rs2=st.executeQuery(sqlQuery);
 
                     while(rs2.next()){
@@ -255,8 +256,13 @@ public class DBGui extends JFrame{
                         brand = rs2.getString("brand");
                         prezzo = rs2.getFloat("prezzo");
                         reparto = rs2.getString("reparto");
-                        result_textarea.append("  "+codice+"\t| "+nome+"\t| "+prezzo+"\t| "+reparto+"\t| "+brand+"   |\n");
-                        result_textarea.append("-----------------------------------------------------------------------------+\n");
+                        if(nome.equals("Luffy Gear 4")){
+                            result_textarea.append("  "+codice+"\t| "+nome+"\t\t| "+prezzo+"\t| "+reparto+"\t| "+brand+"   |\n");
+                            result_textarea.append("-------------------------------------------------------------------------------------------------------------------------------------------+\n");
+                        }else {
+                            result_textarea.append("  " + codice + "\t| " + nome + "\t| " + prezzo + "\t| " + reparto + "\t| " + brand + "   |\n");
+                            result_textarea.append("-------------------------------------------------------------------------------------------------------------------------------------------+\n");
+                        }
                     }
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
