@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="DBGui">
-  <grid id="27dc6" binding="jp1" layout-manager="GridLayoutManager" row-count="10" column-count="24" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="jp1" layout-manager="GridLayoutManager" row-count="5" column-count="18" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="5" y="5" width="778" height="500"/>
+      <xy x="5" y="5" width="930" height="500"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <component id="ec783" class="javax.swing.JTextArea" binding="result_textarea">
-        <constraints>
-          <grid row="5" column="0" row-span="5" col-span="24" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
       <component id="9b05a" class="javax.swing.JButton" binding="connection_btn">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -26,68 +16,36 @@
           <text value="Connetti DB"/>
         </properties>
       </component>
-      <component id="23196" class="javax.swing.JButton" binding="query5_btn">
-        <constraints>
-          <grid row="3" column="2" row-span="1" col-span="7" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Button"/>
-        </properties>
-      </component>
-      <component id="4e6d3" class="javax.swing.JButton" binding="query3_btn">
+      <component id="4e6d3" class="javax.swing.JButton" binding="delete_btn">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Button"/>
+          <text value="Delete"/>
         </properties>
       </component>
-      <component id="2c3bd" class="javax.swing.JButton" binding="query1_btn">
+      <component id="2c3bd" class="javax.swing.JButton" binding="insert_button">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Button"/>
+          <text value="Insert"/>
         </properties>
       </component>
-      <component id="1b2d3" class="javax.swing.JButton" binding="query4_btn">
+      <component id="1b2d3" class="javax.swing.JButton" binding="select_btn">
         <constraints>
           <grid row="2" column="2" row-span="1" col-span="7" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Button"/>
+          <text value="Select"/>
         </properties>
       </component>
-      <component id="5b4fc" class="javax.swing.JButton" binding="query2_btn">
+      <component id="5b4fc" class="javax.swing.JButton" binding="update_button">
         <constraints>
           <grid row="2" column="10" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Button"/>
-        </properties>
-      </component>
-      <component id="f5254" class="javax.swing.JButton" binding="query6_btn">
-        <constraints>
-          <grid row="3" column="10" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Button"/>
-        </properties>
-      </component>
-      <component id="2780c" class="javax.swing.JButton" binding="query7_btn">
-        <constraints>
-          <grid row="2" column="17" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Button"/>
-        </properties>
-      </component>
-      <component id="f022d" class="javax.swing.JButton" binding="clear_area_btn">
-        <constraints>
-          <grid row="3" column="17" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Button"/>
+          <text value="Update"/>
         </properties>
       </component>
       <component id="d6791" class="javax.swing.JTextField" binding="db_insertion">
@@ -106,20 +64,22 @@
           <text value="Label"/>
         </properties>
       </component>
-      <component id="d182c" class="javax.swing.JButton" binding="insert_button">
+      <component id="ec783" class="javax.swing.JTextArea" binding="result_textarea">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="18" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
         </constraints>
         <properties>
-          <text value="Insert"/>
+          <text value=""/>
         </properties>
       </component>
-      <component id="5eff5" class="javax.swing.JButton" binding="update_Button">
+      <component id="f022d" class="javax.swing.JButton" binding="clear_area_btn">
         <constraints>
-          <grid row="4" column="2" row-span="1" col-span="7" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="2" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Update"/>
+          <text value="Svuota l'area risultato"/>
         </properties>
       </component>
     </children>
