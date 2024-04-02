@@ -84,6 +84,7 @@ public class DBGui extends JFrame{
                 String reparto = null;
                 String brand = null;
                 String url = "jdbc:mysql://localhost:3306/progetto_fumetteria?user=root&password=m51098guerrera";
+                result_textarea.append("\nSELECT QUERY: mostra tutti i prodotti della tabella 'prodotto' con il prezzo MAGGIORE di 20\n________________________________________________________________________________\n");
                 result_textarea.append(" codice\t| nome\t\t| prezzo\t| reparto\t| brand\t          |\n");
                 result_textarea.append("-------------------------------------------------------------------------------------------------------------------------------------------+\n");
                 try {
@@ -99,7 +100,6 @@ public class DBGui extends JFrame{
                         prezzo = rs.getFloat("prezzo");
                         reparto = rs.getString("reparto");
                         result_textarea.append("  " + codice + "\t| " + nome + "\t| " + prezzo + "\t| " + reparto + "\t| " + brand + "   |\n");
-                        System.out.println("  " + codice + "\t| " + nome + "\t| " + prezzo + "\t| " + reparto + "\t| " + brand + "   |\n");
                         result_textarea.append("-------------------------------------------------------------------------------------------------------------------------------------------+\n");
                     }
                 } catch (SQLException e) {
@@ -111,7 +111,7 @@ public class DBGui extends JFrame{
         delete_btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                result_textarea.append("INSERTION QUERY: inserimento di un nuovo prodotto nella tabella 'prodotto'\n"+
+                result_textarea.append("DELETE QUERY: RIMOZIONE del prodotto con il codice '171' dalla tabella 'prodotto'\n"+
                         "\n\nRISULTATO PRIMA DELLA ESECUZIONE DELL'INSERIMENTO:\n-----------------------------------------------------------------------------+\n");
                 result_textarea.append(" codice\t| nome\t\t| prezzo\t| reparto\t| brand\t          |\n");
                 result_textarea.append("-----------------------------------------------------------------------------|\n");
@@ -139,8 +139,8 @@ public class DBGui extends JFrame{
                     String sqlQuery2="delete from progetto_fumetteria.prodotto where codice=171;";
                     Statement st2= con.createStatement();
                     System.out.print(st2.executeUpdate(sqlQuery2));
-                    result_textarea.append("\nINSERTION QUERY: inserimento di un nuovo prodotto nella tabella 'prodotto'\n"+
-                            "\nRISULTATO DOPO L'ESECUZIONE DELL'INSERIMENTO:\n-----------------------------------------------------------------------------+\n");
+                    result_textarea.append("\nDELETE QUERY: RIMOZIONE del prodotto con il codice '171' dalla tabella 'prodotto'\n"+
+                            "\nRISULTATO DOPO L'ESECUZIONE DELLA RIMOZIONE:\n-----------------------------------------------------------------------------+\n");
                     result_textarea.append(" codice\t| nome\t\t| prezzo\t| reparto\t| brand\t          |\n");
                     result_textarea.append("-----------------------------------------------------------------------------|\n");
                     ResultSet rs2=st.executeQuery(sqlQuery);
@@ -216,7 +216,7 @@ public class DBGui extends JFrame{
         update_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                result_textarea.append("INSERTION QUERY: inserimento di un nuovo prodotto nella tabella 'prodotto'\n"+
+                result_textarea.append("UPDATE QUERY: inserimento di un nuovo prodotto nella tabella 'prodotto'\n"+
                         "\n\nRISULTATO PRIMA DELLA ESECUZIONE DELL'UPDATE:\n-----------------------------------------------------------------------------+\n");
                 result_textarea.append(" codice\t| nome\t\t| prezzo\t| reparto\t| brand\t          |\n");
                 result_textarea.append("-----------------------------------------------------------------------------|\n");
@@ -243,7 +243,6 @@ public class DBGui extends JFrame{
                     }
                     String sqlQuery2="UPDATE prodotto set nome ='LugiaEX - 4 pack' where codice=444";
                     Statement st2= con.createStatement();
-                    System.out.print(st2.executeUpdate(sqlQuery2));
                     result_textarea.append("\nUPDATE QUERY: inserimento di un nuovo prodotto nella tabella 'prodotto'\n"+
                             "\nRISULTATO DOPO L'ESECUZIONE DELL'UPDATE:\n-------------------------------------------------------------------------------------------------------------------------------------------+\n");
                     result_textarea.append(" codice\t| nome\t\t| prezzo\t| reparto\t| brand\t          |\n");
