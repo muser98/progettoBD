@@ -191,7 +191,7 @@ public class DBGui extends JFrame{
                         String sqlQuery2="insert into prodotto values " +
                                 "('171','Minato Uzumaki',35,'001', 'Bandai');";
                         Statement st2= con.createStatement();
-                        System.out.print(st2.executeUpdate(sqlQuery2));
+                        System.out.print(st2.executeUpdate(sqlQuery2)+"\n");
                         result_textarea.append("\nINSERTION QUERY: inserimento di un nuovo prodotto nella tabella 'prodotto'\n"+
                                "\nRISULTATO DOPO L'ESECUZIONE DELL'INSERIMENTO:\n-----------------------------------------------------------------------------+\n");
                         result_textarea.append(" codice\t| nome\t\t| prezzo\t| reparto\t| brand\t          |\n");
@@ -241,8 +241,9 @@ public class DBGui extends JFrame{
                         System.out.println("  " + codice + "\t| " + nome + "\t| " + prezzo + "\t| " + reparto + "\t| " + brand + "   |\n");
                         result_textarea.append("-----------------------------------------------------------------------------+\n");
                     }
-                    String sqlQuery2="UPDATE prodotto set nome ='LugiaEX - 4 pack' where codice=444";
+                    String sqlQuery2= "UPDATE prodotto set nome ='LugiaEX - 4 pack' where codice=444";
                     Statement st2= con.createStatement();
+                    st2.executeUpdate(sqlQuery2);
                     result_textarea.append("\nUPDATE QUERY: inserimento di un nuovo prodotto nella tabella 'prodotto'\n"+
                             "\nRISULTATO DOPO L'ESECUZIONE DELL'UPDATE:\n-------------------------------------------------------------------------------------------------------------------------------------------+\n");
                     result_textarea.append(" codice\t| nome\t\t| prezzo\t| reparto\t| brand\t          |\n");
